@@ -1,2 +1,3 @@
-# piotrt75.github.io
-FXFEL manual
+# FXFEL Project Documentation
+Welcome to FXFEL Project Documentation.
+
