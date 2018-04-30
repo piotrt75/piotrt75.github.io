@@ -48,10 +48,13 @@ All scripts use only metadata defined in this manual, any other metadata is just
 
 # Usage
 The use of the script is very simple. Assuming that there is file called input.txt it is enough to launch the script with the name of the file as parameter e.g.:
-*python Astra2SU . py i n p u t . t x t*
+*python Astra2SU.py input.txt*
+
 **The only exception is VSim2SU which needs to arguments.** The output will be new file with similar name – only the end of the name of the file will differ depending on which script was used.
+
 # List of the scripts
 Current release has 10 scripts but the number of scripts can go higher as new packages (e.g. Genesis) will be included in FXFEL project.
+
 **Scripts that convert INTO SU5 format:**
 
 * Astra2SU.py
@@ -66,6 +69,7 @@ This script converts HDF5 file which contains particle assembly into SU5 file. I
 As current release of MASP saves files in ASCII there was need to write simple script that will just rewrite this data in SU5 format. There is no manipulation on coordinates or charge/number of particles as generally MASP uses very similar data as input/output.
 
 **Scripts that convert FROM SU5 format**
+
 * SU2ASTRA.py
 The scripts reads SU5 file and then converts the particle set into ASTRA format (generates the reference particle, scales rest of particles, converts charge units).
 * SU2Elegant.py
@@ -77,6 +81,7 @@ As current release of MASP needs files in ASCII format there was need to write s
 This scripts converts data into Puffin. The Puffin input file needs rescaling the units and calculating some parameters. Therefore the script creates Puffin input file but also some parameters are displayed on the screen after the file is created (γ, ρ, λ u , λ r ) and these parameters should be next used in the proper Puffin input files. The script creates HDF5 (VizSchema) file that can be also used in VisIt for plotting the data before launching your jobs (data validation).
 
 **Other scripts**
+
 * SU2CDF.py
 This script is used to prepare sparse data distribution to data suitable for Puffin. The principle of this script is basing of Cumulative Distribution Function. The script is rather a complex one and therefore has its own manual. The most important parameters are multiplier of particles and number of slices per scaled wavelength. The first parameter is responsible for global increase of particles in the distribution (e.g. 20x) while the second one inform the script that it has to generate certain number of slices per scaled wavelenght - the number of particles in each slice is a constant value. However, there are much more parameters needed as the data is being analysed according to the target FEL undulators design.
 * Emmitance.py The script analyses the input file and provides current, energy, energy spread (sliced) and emittance curves. The input data is sliced to 100 slices - if user wishes to have more or less slices a change in the script is necessary. The script is parallelized.
