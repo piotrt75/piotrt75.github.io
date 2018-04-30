@@ -9,24 +9,25 @@ The UKFEL suite includes a library of conditioning routines which will serve for
 * The number of electrons in the particle.
 The values of length are in SI units (meters) but momentum is in scaled units (divided over (m · c)).
 
-1.2
-1.2.1
+
 # Conversion Scripts and SU5 file format – user manual The purpose of the scripts
 
 The main aim of creating the scripts was to allow converting particle sets between different software packages dealing with FEL and accelerator simulations (i.e. Astra, Elegant, Puffin, Vsim). For maximum portability the scripts are written in Python and don’t use system specific commands. The script use SU5 format as ’common format’ for exchange. The scripts don’t transfer data directly between packages but they convert data either into SU5 or from SU5
 format – such attempt reduced number of possible configuration and in future allows easier expanding of format converters library.
 
-1.2.2
 # Requirements
 Scripts are written in Python 2.7 with use of numpy and table modules. In order to use them you need to install Python 2.7 (Windows, Linux) and above modules. The other requirement is SDDSToolkit which is used by script dealing with Elegant and Puffin data manipulation. The scripts (except SU2CDF) use one core only and sometimes lot of memory – the size of the file you want to convert usually determine the amount of necessary memory.
 
-1.2.3
 # Installation
 The installation is simple – just copy the scripts to directory where you intend to use them or create access path in your system.
 
-1.2.4
 # SU5 file format
 The SU5 file format is HDF5 file which contains particle positions and momentum in common array (the dataset has class array). The table is built of 7 columns: x, px, y, py, z, pz and N e. N e column defines number of electrons per each record (macroparticle). All used units are SI (m, kg, s) but momentum is scaled i.e. divided over (m · c) – such approach reduces the problem of having tiny values which may cause problem. There is no reference particle and the
 coordinates are in absolute space. The class of the array is ’table’ and this is due to restrictions from VisIt which is unable to handle properly other classes (fails to open). There is also just one dataset in the file by default. If user wants to pass more datasets then they should have
 different name and the user is also supposed to take extra care about metadata. The below table show how the SU5 file should like when opened in ’hdfview’ or other similar program:
 
+| X | Px | Y | Py | Z | Pz | Ne |
+| -- | -- | -- | -- | -- | -- | -- |
+| 1 | 0.1 | 2 | 0.1 | 1 | 10 | 1 |
+| ... | ... | ... | ... | ... | ... | ... |
+| 1 | 0.15 | 2 | 0.1 | 1.2 | 11 | 1.3 |
