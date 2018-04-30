@@ -222,7 +222,8 @@ Hence we calculated most necessary variables we can start to rescale the units:
 ```math
 a^2 + b^2 = c^2
 ```
-
+$$a^2 + b^2 = c^2$$
+ 
 After all data is processed we need to combine it in Puffin accepted format which is currently HDF table of 7 columns (x́,ý,z2,px,py,γ,Ne). The data is saved as HDF5 with VizSchema metadata applied. The HDF file can be loaded into VisIt and user can visualise the input data before launching time consuming calculations in Puffin.
 
 # Bibliography
