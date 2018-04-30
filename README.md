@@ -43,14 +43,17 @@ ParticleGroup._v_attrs.FXFELSourceFileName=file_name_in
 If the user would like to add his own metadata to pass into SI5 file then the above scheme can be applied as follows:
 
 ```python
-*ParticleGroup._v_attrs.MY_METADATA_STRING_NAME=MY_METADATA_VALUE*
+ParticleGroup._v_attrs.MY_METADATA_STRING_NAME=MY_METADATA_VALUE
 ```
 
 All scripts use only metadata defined in this manual, any other metadata is just ignored.
 
 # Usage
 The use of the script is very simple. Assuming that there is file called input.txt it is enough to launch the script with the name of the file as parameter e.g.:
-*python Astra2SU.py input.txt*
+
+```shell
+python Astra2SU.py input.txt
+```
 
 **The only exception is VSim2SU which needs to arguments.** The output will be new file with similar name – only the end of the name of the file will differ depending on which script was used.
 
@@ -87,6 +90,7 @@ This scripts converts data into Puffin. The Puffin input file needs rescaling th
 * SU2CDF.py
 This script is used to prepare sparse data distribution to data suitable for Puffin. The principle of this script is basing of Cumulative Distribution Function. The script is rather a complex one and therefore has its own manual. The most important parameters are multiplier of particles and number of slices per scaled wavelength. The first parameter is responsible for global increase of particles in the distribution (e.g. 20x) while the second one inform the script that it has to generate certain number of slices per scaled wavelenght - the number of particles in each slice is a constant value. However, there are much more parameters needed as the data is being analysed according to the target FEL undulators design.
 * Emmitance.py The script analyses the input file and provides current, energy, energy spread (sliced) and emittance curves. The input data is sliced to 100 slices - if user wishes to have more or less slices a change in the script is necessary. The script is parallelized.
+
 
 
 
