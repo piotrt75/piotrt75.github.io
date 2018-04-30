@@ -34,15 +34,17 @@ different name and the user is also supposed to take extra care about metadata. 
 
 Please not that N e column should have values larger than 1 as it means that there is at least one electron it the record – not keeping to this rule may cause some of the script to fail. The file also contains metadata for VisIt (VizSchema) which allows quick visualisation of your SU5 in VisIt – this is to allow users to see what they just converted from other packages or what they are up to convert to other packages. For purpose of history there is also metadata added that contains time and date of conversion into SU5, name of the source file used and origin (i.e. if source file comes from Astra it will show ASTRA). The history/origin metadata is added as follows:
 
-*ParticleGroup._v_attrs.FXFELConversionTime=now.strftime(”%Y−%m−%d%H:%M:%S”)*
-
-*ParticleGroup._v_attrs.FXFELSourceFileOrigin=’ASTRA’*
-
-*ParticleGroup._v_attrs.FXFELSourceFileName=file_name_in*
+'''python
+ParticleGroup._v_attrs.FXFELConversionTime=now.strftime(”%Y−%m−%d%H:%M:%S”)
+ParticleGroup._v_attrs.FXFELSourceFileOrigin=’ASTRA’
+ParticleGroup._v_attrs.FXFELSourceFileName=file_name_in
+'''
 
 If the user would like to add his own metadata to pass into SI5 file then the above scheme can be applied as follows:
 
+'''python
 *ParticleGroup._v_attrs.MY_METADATA_STRING_NAME=MY_METADATA_VALUE*
+'''
 
 All scripts use only metadata defined in this manual, any other metadata is just ignored.
 
