@@ -91,7 +91,162 @@ This scripts converts data into Puffin. The Puffin input file needs rescaling th
 This script is used to prepare sparse data distribution to data suitable for Puffin. The principle of this script is basing of Cumulative Distribution Function. The script is rather a complex one and therefore has its own manual. The most important parameters are multiplier of particles and number of slices per scaled wavelength. The first parameter is responsible for global increase of particles in the distribution (e.g. 20x) while the second one inform the script that it has to generate certain number of slices per scaled wavelenght - the number of particles in each slice is a constant value. However, there are much more parameters needed as the data is being analysed according to the target FEL undulators design.
 * Emmitance.py The script analyses the input file and provides current, energy, energy spread (sliced) and emittance curves. The input data is sliced to 100 slices - if user wishes to have more or less slices a change in the script is necessary. The script is parallelized.
 
+## Detailed description
+
+This paragraph will describe in more details how the scripts are converting the data.
+
+# Astra2SU
+
+This conversion is relatively straight forward. SU5 needs data in absolute coordinates system while Astra uses first particle in data set as reference particle for Z axis and P z column. First thing done by the script is to convert the space coordinates to absolute ones. First row is the reference particle, therefore we use this row to convert the rest of the particles – note that we only convert the Z axis (Z and P z , third and sixth column in dataset) ! The same loop in the script is also responsible for converting Astra units to SI units – in case of Astra momentum is eV /c and we need to scale it to kg ∗ m/s (multiply by 5.36 −28 and then divide over (m · c). Last operation is to put the number of particles in last column of our output. To do this we
+scale charge of single record to Coulombs and then divide over single electron charge. Next, the data is saved in SU5 format (ordered as follows: X, Px, Y, Py, Z, Pz , Ne).
 
 
+# Elegant2SU
 
+Elegant to SU5 conversion requires SDDSToolkit installed as SDDS commands are used for accessing the SDDS file used by Elegant as native format. Elegant uses its own style format to store data. The columns we can retrieve from dataset are: x, xp, y, yp, t and P . Please note that xp and yp are not straight momentum data – this is ’projected on Z axis’ momentum. The way to get absolute momentum is to find first pz:
+
+```python
+P·ERM ·10 6
+p z = p
+xp 2 + yp 2 + 1
+```
+where ERM is Electron Rest Mass and 10 6 term scales MeV to eV – this is all done to scale momentum units from eV /C to SI units. While we calculated p z we can now find px and py as:
+
+```python
+px = pz ·xp
+py = pz ·yp
+```
+
+The one more lacking data is Z positions of particles. To calculate this we use following equation:
+
+```python
+z = q
+t·c·p z
+p 2 x + p 2 y + p 2 z
+```
+
+The only one more thing to do is to calculate proper charge of particles. Elegant doesn’t distinguish particles relating to charge – all particles have same charge and this value is stored in source SDDS file under name ’Charge’. We need to retrieve this value, divide this over number of records (particles) and then divide over charge of single electron to get number of particles in single record. Next the data is stored in SU5 file.
+
+#VSim2SU
+
+The Vsim software stores data in HDF format files. First we need to load such file. The structure is relatively simple as it contains spatial positions of particles, momentum (scaled) and their charge (in weighted format). There is also one issue that Puffin requires particles to travel along z-axis while this is not necessary in Vsim, to avoid problems the user needs to check what is the ’travel axis’ in source (Vsim) data. In example we had particles were
+travelling along x-axis and thus axis z and x are switched (so is momentum p x and p z ). To obtain SI units the momentum in Vsim needs to be divided over mass of single electron – as we want to go to Scaled Units we divide the momentum only by c. Little more complicated issue occurs when it comes to charge as Vsim stores scaling parameter in metadata – the metadata variable is called ’numPtclsInMacro’ and its value needs to be read from the file and then we can calculate the numbers of particles by:
+
+```python
+n=len(Electrons)
+RecordsNumber=n
+ParticlePerRecord=ParticleNumber/RecordsNumber
+```
+
+The value of ’n’ is calculated as length of the table (this gives us the total number of records in file). Finally when saving the the data the source column containing the scaled charge needs to be multiplied by ’ParticlePerRecord’ value. The output file is saved as HDF5 data in SU input format.
+
+# MASP2SU
+
+The conversion is reduced to just rescale the momentum to SU units (p/mc) and reordering columns to SU friendly format x, px, y, py, z, pz, N , adding proper metadata (VizSchema) and saving the data in HDF5 file.
+
+# SU2Astra
+
+The script works in a reverse way to Astra2SU script. Data is unscaled to SI units and one more particle (reference particle) is created to fulfill Astra requirements. Reference particle is created as geometrical centre of the beam (not mass centre as the average x/y/z values are not weighted by mass). Finally the ouptut is saved to Astra format and ASCII file.
+
+# SU2Elegant
+
+Again, the script works on reveres principle – in this case reverse to Elegant2SU script. First the data is loaded and some additional variables are calculated to allow creating output array in Elegant format x, xp, y, yp, t and P . Please note that Elegant requires all macroparticles having same charge/weight – if the input data doesn’t fulfill this requirement then the output data will be rather useless for Elegant run. Finally the data is converted and saved into SDDS file to further use with Elegant/SDDS tools.
+
+# SU2Genesis
+The Genesis particle input file in fact is very similar to SU format except it is ASCII file and requires a header describing some beam info: charge of the beam, number of records in the file (macroparticles) and format (in our case X, P X, Y, P Y, Z, P is used). Similarly to Elegant, Genesis requires all macroparticles having same charge/weight – if the input data doesn’t fulfill this requirement then the output data will be rather useless for Genesis run (the data will be wrong).
+
+# SU2MASP
+The conversion is reduced to just rescale the momentum to SI units and reordering columns to MASP friendly format x, px, y, py, z, pz, N and saving the data in ASCII (text) file.
+
+# SU2Puffin
+This script converts data from SU5 into Puffin accepted format. The detailed description of Puffin data is published in Puffin papers – this section will focus here only on equations used for direct conversion of data. First of all please note that this is script that is most time consuming of all described here scripts – running time depend on source data size, can run even few minutes and if you suppose that the script is ’frozen’ check your system monitor if CPU is busy (if yes – script is running), the end of the script will also perform some intense hard disk operations. The script calculates number of records by counting the lines and then initiates empty floating point data tables. Script calculates weights (N p ) using 3 dimensional bins command available
+in python – the maximum value is then divided over size of one bin and that gives us value of maximum concentration of electrons. This value might be depending on the number (and of course) size of bins and if the user feels that default value is far from expected it may be easily changed in proper line inside script (see the comments inside the code). The total momentum of particles is calculated as p_tot :
+
+```python
+p tot = p 2 x + p 2 y + p 2 z
+```
+
+next γ:
+
+```python
+r
+γ =
+1+(
+p tot 2
+)
+m·c
+```
+
+ωp:
+
+```python
+s
+e 2 ch ·N p
+e 0 ·m
+ω p =
+```
+
+where e0 is vacuum permitivity and m is mass of single electron. γ0 is calculated as mean value of γ. The above allows to calculate ρ, λ u and λ r :
+
+```python
+ρ =
+1 a u ·ω p 23
+·(
+)
+γ 0 4·c·k u
+2·π
+k u
+λ u =
+λ r = (
+λ u
+a 2
+)·(1 + u )
+2
+(2·γ 0 )
+2
+```
+
+Please note the part responsible for planar type undulator (a2u2). Next step is to calculate Lc and Lg:
+
+```python
+L c = λ r
+4·π·ρ
+L g = λ r
+4·π·ρ
+```
+
+
+Hence we calculated most necessary variables we can start to rescale the units:
+
+```python
+z
+L C
+x
+x́ = p
+L g ·L c
+y
+ý = p
+L g ·L c
+p x
+p  ́ x = √
+m·c·a u
+p y
+p  ́ y = − √
+m·c·a u
+z 2 =
+N e =
+NumberOfParticles
+N p ·L g ·L 2 c
+```
+
+After all data is processed we need to combine it in Puffin accepted format which is currently HDF table of 7 columns ( x́, ý, z 2, , p  ́ x , p  ́ y , γ, N e ).
+The data is saved as HDF5 with VizSchema metadata applied. The HDF file can be loaded into VisIt and user can visualise the input data before launching time consuming calculations in Puffin.
+
+# Bibliography
+[1] B.J.W. McNeil, M.W. Poole and G.R.M.Robb Unified model of electron beam shot noise and coherent spontaneous emission in the helical wiggler free electron laser Physical Review Special Topics - Accelerators and Beams, Vol 6, 070701 (2003)
+[2] Klaus Floettmann ASTRA : A Space Charge TrackingAlgorithm www.desy.de/ ̃mpyflo/Astra-manual/Astra Manual/ V3.1.pdf
+[3] Michael Borland User’s Manual for Elegant www.aps.anl.gov/Accelerator Systems Division /Accelerator Operations Physics/manuals/elegant latest/elegant.html
+[4] VIS1T User manuals https://wci.llnl.gov/simulation/computer-codes/visit/manuals
+[5] L.T. Campbell and B.W.J. McNeil, Physics of Plasmas 19, 093119 (2012)
+[6] L T Campbell, B.W.J. McNeil and S. Reiche, New J. Phys. 16 (2014) 103019
 
