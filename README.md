@@ -218,35 +218,41 @@ L g = λ r
 
 Hence we calculated most necessary variables we can start to rescale the units:
 
-```python
-z
-L C
-x
-x́ = p
-L g ·L c
-y
-ý = p
-L g ·L c
-p x
-p  ́ x = √
-m·c·a u
-p y
-p  ́ y = − √
-m·c·a u
-z 2 =
-N e =
-NumberOfParticles
-N p ·L g ·L 2 c
+```TeX
+\begin{equation*}
+{z}_{2}=\frac{z}{{L}_{C}}
+\end{equation*}
+\begin{equation*}
+\acute{{x}}=\frac{x}{\sqrt{{L}_{g}{\cdot}{L}_{c}}}
+\end{equation*}
+\begin{equation*}
+\acute{{y}}=\frac{y}{\sqrt{{L}_{g}{\cdot}{L}_{c}}}
+\end{equation*}
+\begin{equation*}
+\acute{{{p}_{x}}}=\frac{{p}_{x}}{\sqrt{m{\cdot}c{\cdot}{a}_{u}}}
+\end{equation*}
+\begin{equation*}
+\acute{{{p}_{y}}}={-}\frac{{p}_{y}}{\sqrt{m{\cdot}c{\cdot}{a}_{u}}}
+\end{equation*}
+\begin{equation*}
+{N}_{e}=\frac{\mathit{NumberOfParticles}}{{N}_{p}{\cdot}{L}_{g}{\cdot}{L}_{c}^{2}}
+\end{equation*}
 ```
 
 After all data is processed we need to combine it in Puffin accepted format which is currently HDF table of 7 columns ( x́, ý, z 2, , p  ́ x , p  ́ y , γ, N e ).
 The data is saved as HDF5 with VizSchema metadata applied. The HDF file can be loaded into VisIt and user can visualise the input data before launching time consuming calculations in Puffin.
 
 # Bibliography
-[1] B.J.W. McNeil, M.W. Poole and G.R.M.Robb Unified model of electron beam shot noise and coherent spontaneous emission in the helical wiggler free electron laser Physical Review Special Topics - Accelerators and Beams, Vol 6, 070701 (2003)
-[2] Klaus Floettmann ASTRA : A Space Charge TrackingAlgorithm www.desy.de/ ̃mpyflo/Astra-manual/Astra Manual/ V3.1.pdf
-[3] Michael Borland User’s Manual for Elegant www.aps.anl.gov/Accelerator Systems Division /Accelerator Operations Physics/manuals/elegant latest/elegant.html
-[4] VIS1T User manuals https://wci.llnl.gov/simulation/computer-codes/visit/manuals
-[5] L.T. Campbell and B.W.J. McNeil, Physics of Plasmas 19, 093119 (2012)
-[6] L T Campbell, B.W.J. McNeil and S. Reiche, New J. Phys. 16 (2014) 103019
+
+1. B.J.W. McNeil, M.W. Poole and G.R.M.Robb Unified model of electron beam shot noise and coherent spontaneous emission in the helical wiggler free electron laser Physical Review Special Topics - Accelerators and Beams, Vol 6, 070701 (2003)
+
+2. Klaus Floettmann ASTRA : A Space Charge TrackingAlgorithm www.desy.de/ ̃mpyflo/Astra-manual/Astra Manual/ V3.1.pdf
+
+3. Michael Borland User’s Manual for Elegant www.aps.anl.gov/Accelerator Systems Division /Accelerator Operations Physics/manuals/elegant latest/elegant.html
+
+4. VIS1T User manuals https://wci.llnl.gov/simulation/computer-codes/visit/manuals
+
+5. L.T. Campbell and B.W.J. McNeil, Physics of Plasmas 19, 093119 (2012)
+
+6. L T Campbell, B.W.J. McNeil and S. Reiche, New J. Phys. 16 (2014) 103019
 
