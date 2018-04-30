@@ -31,6 +31,7 @@ different name and the user is also supposed to take extra care about metadata. 
 | 1 | 0.1 | 2 | 0.1 | 1 | 10 | 1 |
 | ... | ... | ... | ... | ... | ... | ... |
 | 1 | 0.15 | 2 | 0.1 | 1.2 | 11 | 1.3 |
+
 Please not that N e column should have values larger than 1 as it means that there is at least one electron it the record – not keeping to this rule may cause some of the script to fail. The file also contains metadata for VisIt (VizSchema) which allows quick visualisation of your SU5 in VisIt – this is to allow users to see what they just converted from other packages or what they are up to convert to other packages. For purpose of history there is also metadata added that contains time and date of conversion into SU5, name of the source file used and origin (i.e. if source file comes from Astra it will show ASTRA). The history/origin metadata is added as follows:
 *P a r t i c l e G r o u p . v a t t r s . FXFELConversionTime=now . s t r f t i m e ( ”%Y −%m −%d %H:%M:%S” )*
 *P a r t i c l e G r o u p . v a t t r s . FXFELSourceFileOrigin= ’ASTRA ’*
