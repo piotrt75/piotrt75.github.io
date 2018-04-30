@@ -31,3 +31,49 @@ different name and the user is also supposed to take extra care about metadata. 
 | 1 | 0.1 | 2 | 0.1 | 1 | 10 | 1 |
 | ... | ... | ... | ... | ... | ... | ... |
 | 1 | 0.15 | 2 | 0.1 | 1.2 | 11 | 1.3 |
+Please not that N e column should have values larger than 1 as it means that there is at least one electron it the record – not keeping to this rule may cause some of the script to fail. The file also contains metadata for VisIt (VizSchema) which allows quick visualisation of your SU5 in VisIt – this is to allow users to see what they just converted from other packages or what they are up to convert to other packages. For purpose of history there is also metadata added that contains time and date of conversion into SU5, name of the source file used and origin (i.e. if source file comes from Astra it will show ASTRA). The history/origin metadata is added as follows:
+*P a r t i c l e G r o u p . v a t t r s . FXFELConversionTime=now . s t r f t i m e ( ”%Y −%m −%d %H:%M:%S” )*
+*P a r t i c l e G r o u p . v a t t r s . FXFELSourceFileOrigin= ’ASTRA ’*
+*P a r t i c l e G r o u p . v a t t r s . FXFELSourceFileName=f i l e n a m e i n*
+If the user would like to add his own metadata to pass into SI5 file then the above scheme can be applied as follows:
+*P a r t i c l e G r o u p . v a t t r s .MY METADATA STRING NAME=MY METADATA VALUE*
+All scripts use only metadata defined in this manual, any other metadata is just ignored.
+
+# Usage
+The use of the script is very simple. Assuming that there is file called input.txt it is enough to launch the script with the name of the file as parameter e.g.:
+*python Astra2SU . py i n p u t . t x t*
+**The only exception is VSim2SU which needs to arguments.** The output will be new file with similar name – only the end of the name of the file will differ depending on which script was used.
+# List of the scripts
+Current release has 10 scripts but the number of scripts can go higher as new packages (e.g. Genesis) will be included in FXFEL project.
+**Scripts that convert INTO SU5 format:**
+
+* Astra2SU.py
+The scripts convert particle output from ASTRA to MASP. The conversion is changing the coordinate system from ASTRA system to absolute Cartesian one. The reference particle is still left as first particle in the set and the rest of coordinates and momentum are written in normal Cartesian system. The charge is converted to number of electrons per macroparticle (N e).
+* Elegant2SU.py
+This script converts Elegant particle set to MASP compatible file. The script uses SDDSToolkit (’sdds2stream’) and the output file has at the end of file name.
+* Puffin2SU
+The script loads selected step from Puffin saved files (e.g. step number 0) in SDDS format and converts the data into SU file format. The data is ’unscaled’ and SU units are applied.
+* VSim2SU.py
+This script converts HDF5 file which contains particle assembly into SU5 file. In case of this file user is supposed to pass TWO argument not just one. The first argument is the name of the file to process while second is the name of the array witihn the file which contains the necessary data.
+* MASP2SU.py
+As current release of MASP saves files in ASCII there was need to write simple script that will just rewrite this data in SU5 format. There is no manipulation on coordinates or charge/number of particles as generally MASP uses very similar data as input/output.
+
+**Scripts that convert FROM SU5 format**
+* SU2ASTRA.py
+The scripts reads SU5 file and then converts the particle set into ASTRA format (generates the reference particle, scales rest of particles, converts charge units).
+* SU2Elegant.py
+This scripts converts SU5 into Elegant but assumes that charge is equal for all particles - this requires first equalizing particles charge running some other software.
+* SU2Genesis.py The script converts SU5 file into particle input for Genesis. As Genesis requires particles to be equally charged (each macroparticle has same number of electrons) the input data must also have equally charged macroparticles.
+* SU2MASP.py
+As current release of MASP needs files in ASCII format there was need to write simple script converting SU5 into ASCII. There is no manipulation on coordinates or charge/number of particles as generally MASP uses very similar data as input/output.
+* SU2Puffin.py
+This scripts converts data into Puffin. The Puffin input file needs rescaling the units and calculating some parameters. Therefore the script creates Puffin input file but also some parameters are displayed on the screen after the file is created (γ, ρ, λ u , λ r ) and these parameters should be next used in the proper Puffin input files. The script creates HDF5 (VizSchema) file that can be also used in VisIt for plotting the data before launching your jobs (data validation).
+
+**Other scripts**
+* SU2CDF.py
+This script is used to prepare sparse data distribution to data suitable for Puffin. The principle of this script is basing of Cumulative Distribution Function. The script is rather a complex one and therefore has its own manual. The most important parameters are multiplier of particles and number of slices per scaled wavelength. The first parameter is responsible for global increase of particles in the distribution (e.g. 20x) while the second one inform the script that it has to generate certain number of slices per scaled wavelenght - the number of particles in each slice is a constant value. However, there are much more parameters needed as the data is being analysed according to the target FEL undulators design.
+* Emmitance.py The script analyses the input file and provides current, energy, energy spread (sliced) and emittance curves. The input data is sliced to 100 slices - if user wishes to have more or less slices a change in the script is necessary. The script is parallelized.
+
+
+
+
