@@ -1,3 +1,5 @@
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"> </script> 
+
 ## FXFEL Project Documentation
 # Welcome to FXFEL Project Documentation.
 The FXFEL project consists of small number of handshaking Pythons scripts are a set of routines that alter the format of data in well-defined ways, without changing the information content. These routines are included in the UKFEL suite for two separate reasons:
@@ -127,7 +129,7 @@ p 2 x + p 2 y + p 2 z
 
 The only one more thing to do is to calculate proper charge of particles. Elegant doesn’t distinguish particles relating to charge – all particles have same charge and this value is stored in source SDDS file under name ’Charge’. We need to retrieve this value, divide this over number of records (particles) and then divide over charge of single electron to get number of particles in single record. Next the data is stored in SU5 file.
 
-#VSim2SU
+# VSim2SU
 
 The Vsim software stores data in HDF format files. First we need to load such file. The structure is relatively simple as it contains spatial positions of particles, momentum (scaled) and their charge (in weighted format). There is also one issue that Puffin requires particles to travel along z-axis while this is not necessary in Vsim, to avoid problems the user needs to check what is the ’travel axis’ in source (Vsim) data. In example we had particles were
 travelling along x-axis and thus axis z and x are switched (so is momentum p x and p z ). To obtain SI units the momentum in Vsim needs to be divided over mass of single electron – as we want to go to Scaled Units we divide the momentum only by c. Little more complicated issue occurs when it comes to charge as Vsim stores scaling parameter in metadata – the metadata variable is called ’numPtclsInMacro’ and its value needs to be read from the file and then we can calculate the numbers of particles by:
@@ -218,26 +220,14 @@ L g = λ r
 
 Hence we calculated most necessary variables we can start to rescale the units:
 
-```TeX
-\begin{equation*}
-{z}_{2}=\frac{z}{{L}_{C}}
-\end{equation*}
-\begin{equation*}
-\acute{{x}}=\frac{x}{\sqrt{{L}_{g}{\cdot}{L}_{c}}}
-\end{equation*}
-\begin{equation*}
-\acute{{y}}=\frac{y}{\sqrt{{L}_{g}{\cdot}{L}_{c}}}
-\end{equation*}
-\begin{equation*}
-\acute{{{p}_{x}}}=\frac{{p}_{x}}{\sqrt{m{\cdot}c{\cdot}{a}_{u}}}
-\end{equation*}
-\begin{equation*}
-\acute{{{p}_{y}}}={-}\frac{{p}_{y}}{\sqrt{m{\cdot}c{\cdot}{a}_{u}}}
-\end{equation*}
-\begin{equation*}
-{N}_{e}=\frac{\mathit{NumberOfParticles}}{{N}_{p}{\cdot}{L}_{g}{\cdot}{L}_{c}^{2}}
-\end{equation*}
-```
+$${z}_{2}=\frac{z}{{L}_{C}}$$
+
+$$\acute{{x}}=\frac{x}{\sqrt{{L}_{g}{\cdot}{L}_{c}}}$$
+$$\acute{{y}}=\frac{y}{\sqrt{{L}_{g}{\cdot}{L}_{c}}}$$
+$$\acute{{{p}_{x}}}=\frac{{p}_{x}}{\sqrt{m{\cdot}c{\cdot}{a}_{u}}}$$
+$$\acute{{{p}_{y}}}={-}\frac{{p}_{y}}{\sqrt{m{\cdot}c{\cdot}{a}_{u}}}$$
+$${N}_{e}=\frac{\mathit{NumberOfParticles}}{{N}_{p}{\cdot}{L}_{g}{\cdot}{L}_{c}^{2}}$$
+
 
 After all data is processed we need to combine it in Puffin accepted format which is currently HDF table of 7 columns ( x́, ý, z 2, , p  ́ x , p  ́ y , γ, N e ).
 The data is saved as HDF5 with VizSchema metadata applied. The HDF file can be loaded into VisIt and user can visualise the input data before launching time consuming calculations in Puffin.
