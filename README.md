@@ -1,4 +1,6 @@
-<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"> </script> 
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
 
 ## FXFEL Project Documentation
 # Welcome to FXFEL Project Documentation.
@@ -220,13 +222,12 @@ L g = λ r
 
 Hence we calculated most necessary variables we can start to rescale the units:
 
-$${z}_{2}=\frac{z}{{L}_{C}}$$
-
-$$\acute{{x}}=\frac{x}{\sqrt{{L}_{g}{\cdot}{L}_{c}}}$$
-$$\acute{{y}}=\frac{y}{\sqrt{{L}_{g}{\cdot}{L}_{c}}}$$
-$$\acute{{{p}_{x}}}=\frac{{p}_{x}}{\sqrt{m{\cdot}c{\cdot}{a}_{u}}}$$
-$$\acute{{{p}_{y}}}={-}\frac{{p}_{y}}{\sqrt{m{\cdot}c{\cdot}{a}_{u}}}$$
-$${N}_{e}=\frac{\mathit{NumberOfParticles}}{{N}_{p}{\cdot}{L}_{g}{\cdot}{L}_{c}^{2}}$$
+$$ {z}_{2}=\frac{z}{{L}_{C}}$$
+$$ \acute{{x}}=\frac{x}{\sqrt{{L}_{g}{\cdot}{L}_{c}}} $$
+$$ \acute{{y}}=\frac{y}{\sqrt{{L}_{g}{\cdot}{L}_{c}}} $$
+$$ \acute{{{p}_{x}}}=\frac{{p}_{x}}{\sqrt{m{\cdot}c{\cdot}{a}_{u}}} $$
+$$ \acute{{{p}_{y}}}={-}\frac{{p}_{y}}{\sqrt{m{\cdot}c{\cdot}{a}_{u}}} $$
+$$ {N}_{e}=\frac{\mathit{NumberOfParticles}}{{N}_{p}{\cdot}{L}_{g}{\cdot}{L}_{c}^{2}} $$
 
 
 After all data is processed we need to combine it in Puffin accepted format which is currently HDF table of 7 columns ( x́, ý, z 2, , p  ́ x , p  ́ y , γ, N e ).
