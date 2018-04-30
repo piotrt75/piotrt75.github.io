@@ -1,7 +1,4 @@
 theme: jekyll-theme-cayman
 title: [FXFEL Project]
 description: [Documentation for FXFEL]
-markdown: kramdown
 
-kramdown:
-  input: GFM
