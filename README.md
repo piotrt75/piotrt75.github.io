@@ -1,7 +1,3 @@
-<script type="text/javascript" async
-  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML">
-</script>
-
 ## FXFEL Project Documentation
 # Welcome to FXFEL Project Documentation.
 The FXFEL project consists of small number of handshaking Pythons scripts are a set of routines that alter the format of data in well-defined ways, without changing the information content. These routines are included in the UKFEL suite for two separate reasons:
