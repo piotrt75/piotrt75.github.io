@@ -164,25 +164,13 @@ $$p_{tot}=\sqrt{ {p_x}^2+{p_y}^2+{p_z}^2 }$$
 
 next γ:
 
-```python
-r
-γ =
-1+(
-p tot 2
-)
-m·c
-```
+$$\gamma =\sqrt{ 1+{(\frac{{p}_{tot}}{m{\cdot}c})}^{2} }$$
 
-ωp:
+$$\omega_p$$:
 
-```python
-s
-e 2 ch ·N p
-e 0 ·m
-ω p =
-```
+$${\omega }_{p}=\sqrt{ \frac{{e}_{ch}^{2}{\cdot}{N}_{p}}{{e}_{0}{\cdot}m} }$$
 
-where e0 is vacuum permitivity and m is mass of single electron. γ0 is calculated as mean value of γ. The above allows to calculate ρ, λ u and λ r :
+where $$e_0$$ is vacuum permitivity and $$m$$ is mass of single electron. $$\gamma_0$$ is calculated as mean value of $$\gamma$$. The above allows to calculate $$\rho$$, $$\lambda_u$$ and $$\lambda_r$$:
 
 ```python
 ρ =
