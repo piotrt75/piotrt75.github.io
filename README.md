@@ -1,6 +1,5 @@
 <script type="text/javascript" async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-$$ a^2 = b^2 $$
 
 
 ## FXFEL Project Documentation
@@ -110,25 +109,19 @@ scale charge of single record to Coulombs and then divide over single electron c
 
 Elegant to SU5 conversion requires SDDSToolkit installed as SDDS commands are used for accessing the SDDS file used by Elegant as native format. Elegant uses its own style format to store data. The columns we can retrieve from dataset are: x, xp, y, yp, t and P . Please note that xp and yp are not straight momentum data – this is ’projected on Z axis’ momentum. The way to get absolute momentum is to find first pz:
 
-```python
-P·ERM ·10 6
-p z = p
-xp 2 + yp 2 + 1
-```
-where ERM is Electron Rest Mass and 10 6 term scales MeV to eV – this is all done to scale momentum units from eV /C to SI units. While we calculated p z we can now find px and py as:
+$${p}_{z}=\frac{P{\cdot}\mathit{ERM}{\cdot}{10}^{6}}{\sqrt{{\mathit{xp}}^{2}+{\mathit{yp}}^{2}+1}}$$
 
-```python
-px = pz ·xp
-py = pz ·yp
-```
+where ERM is Electron Rest Mass and $10^6$ term scales MeV to eV – this is all done to scale momentum units from $eV/C$ to SI units. While we calculated $p_z$ we can now find $p_x$ and $p_y$ as:
+
+
+$${p}_{x}={p}_{z}{\cdot}\mathit{xp}$$
+
+$${p}_{y}={p}_{z}{\cdot}\mathit{yp}$$
+
 
 The one more lacking data is Z positions of particles. To calculate this we use following equation:
 
-```python
-z = q
-t·c·p z
-p 2 x + p 2 y + p 2 z
-```
+$$z=\frac{t{\cdot}c{\cdot}{p}_{z}}{\sqrt{{p}_{x}^{2}+{p}_{y}^{2}+{p}_{z}^{2}}}$$
 
 The only one more thing to do is to calculate proper charge of particles. Elegant doesn’t distinguish particles relating to charge – all particles have same charge and this value is stored in source SDDS file under name ’Charge’. We need to retrieve this value, divide this over number of records (particles) and then divide over charge of single electron to get number of particles in single record. Next the data is stored in SU5 file.
 
