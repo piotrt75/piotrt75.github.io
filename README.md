@@ -108,7 +108,7 @@ This conversion is relatively straight forward. SU5 needs data in absolute coord
 
 Elegant to SU5 conversion requires SDDSToolkit installed as SDDS commands are used for accessing the SDDS file used by Elegant as native format. Elegant uses its own style format to store data. The columns we can retrieve from dataset are: $$x, xp, y, yp, t$$ and $$P$$ . Please note that $$xp$$ and $$yp$$ are not straight momentum data – this is ’projected on Z axis’ momentum. The way to get absolute momentum is to find first $$p_z$$:
 
-$${p}_{z}=\frac{PERM10}{\sqrt{xp^2+yp^2+1}}$$
+$${p}_{z}=\frac{P \cdot {ERM} \cdot 10}{\sqrt{xp^2+yp^2+1}}$$
 
 $$\frac{1}{2}$$
 
