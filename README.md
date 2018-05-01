@@ -188,13 +188,21 @@ $${L}_{g}=\frac{ {\lambda }_{r}}{4{\cdot}\pi {\cdot}\rho }$$
 
 Hence we calculated most necessary variables we can start to rescale the units:
 
+$${z_2}=\frac{ z}{L_c}$$
 
-```math
-a^2 + b^2 = c^2
-```
-$$a^2 + b^2 = c^2$$
+$$\acute{x}=\frac{x}{\sqrt{{L_g} \cdot {L_c}}}$$
+
+$$\acute{y}=\frac{y}{\sqrt{{L_g} \cdot {L_c}}}$$
+
+
+$$\acute{p_x}=\frac{p_x}{\sqrt{m \cdot c \cdot {a_u}}}$$
+
+$$\acute{p_y}={-}\frac{p_y}{\sqrt{m \cdot c \cdot {a _{u}}}}$$
+
+$${N_e}=\frac{ \mathit{NumberOfParticles}}{{N_p} \cdot {L_g} \cdot {L _ c}^2}$$
+
  
-After all data is processed we need to combine it in Puffin accepted format which is currently HDF table of 7 columns (x́,ý,z2,px,py,γ,Ne). The data is saved as HDF5 with VizSchema metadata applied. The HDF file can be loaded into VisIt and user can visualise the input data before launching time consuming calculations in Puffin.
+After all data is processed we need to combine it in Puffin accepted format which is currently HDF table of 7 columns ($$\acute{x}, \acute{y}, {z_2}, \acute{p_x}, \acute{p_y}, \gamma, N_e$$).). The data is saved as HDF5 with VizSchema metadata applied. The HDF file can be loaded into VisIt and user can visualise the input data before launching time consuming calculations in Puffin.
 
 # Bibliography
 
