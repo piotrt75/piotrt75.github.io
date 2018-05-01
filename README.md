@@ -172,32 +172,18 @@ $${\omega_p}=\sqrt{ \frac{ {e_{ch}}^{2} \cdot N_p} {e_0 \cdot m} }$$
 
 where $$e_0$$ is vacuum permitivity and $$m$$ is mass of single electron. $$\gamma_0$$ is calculated as mean value of $$\gamma$$. The above allows to calculate $$\rho$$, $$\lambda_u$$ and $$\lambda_r$$:
 
-```python
-ρ =
-1 a u ·ω p 23
-·(
-)
-γ 0 4·c·k u
-2·π
-k u
-λ u =
-λ r = (
-λ u
-a 2
-)·(1 + u )
-2
-(2·γ 0 )
-2
-```
+$$\rho=\frac{1}{{\gamma_0}}{\cdot}{(\frac{ {a_u} \cdot {\omega_p}}{4 \cdot c \cdot {k_u}})}^{\frac{2}{3}}$$
 
-Please note the part responsible for planar type undulator (a2u2). Next step is to calculate Lc and Lg:
+$${\lambda_u}=\frac{ 2{\cdot}\pi }{{k}_{u}}$$
 
-```python
-L c = λ r
-4·π·ρ
-L g = λ r
-4·π·ρ
-```
+$${\lambda_r}=\frac{\lambda_u}{(2 \cdot {\gamma_0}^{2})} \cdot (1+\frac{ {a_u}^{2}}{2})$$
+
+Please note the part responsible for planar type undulator ($$\frac{ {a_u}^{2} }{2}$$). Next step is to calculate $$L_c$$ and $$L_g$$:
+
+$${L}_{c}=\frac{ {\lambda }_{r}}{4{\cdot}\pi {\cdot}\rho }$$
+
+$${L}_{g}=\frac{ {\lambda }_{r}}{4{\cdot}\pi {\cdot}\rho }$$
+
 
 
 Hence we calculated most necessary variables we can start to rescale the units:
