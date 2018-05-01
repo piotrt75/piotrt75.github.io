@@ -101,17 +101,16 @@ This paragraph will describe in more details how the scripts are converting the 
 
 # Astra2SU
 
-This conversion is relatively straight forward. SU5 needs data in absolute coordinates system while Astra uses first particle in data set as reference particle for Z axis and P z column. First thing done by the script is to convert the space coordinates to absolute ones. First row is the reference particle, therefore we use this row to convert the rest of the particles – note that we only convert the Z axis (Z and P z , third and sixth column in dataset) ! The same loop in the script is also responsible for converting Astra units to SI units – in case of Astra momentum is eV /c and we need to scale it to kg ∗ m/s (multiply by 5.36 −28 and then divide over (m · c). Last operation is to put the number of particles in last column of our output. To do this we
-scale charge of single record to Coulombs and then divide over single electron charge. Next, the data is saved in SU5 format (ordered as follows: X, Px, Y, Py, Z, Pz , Ne).
+This conversion is relatively straight forward. SU5 needs data in absolute coordinates system while Astra uses first particle in data set as reference particle for Z axis and P z column. First thing done by the script is to convert the space coordinates to absolute ones. First row is the reference particle, therefore we use this row to convert the rest of the particles – note that we only convert the Z axis (Z and P z , third and sixth column in dataset) ! The same loop in the script is also responsible for converting Astra units to SI units – in case of Astra momentum is $$eV/c$$ and we need to scale it to $$kg \cdot m/s$$ (multiply by $$5.36^−28$$ and then divide over $$(m \cdot c)$$. Last operation is to put the number of particles in last column of our output. To do this we scale charge of single record to Coulombs and then divide over single electron charge. Next, the data is saved in SU5 format (ordered as follows: $$X, P_x, Y, P_y, Z, P_z , Ne$$).
 
 
 # Elegant2SU
 
-Elegant to SU5 conversion requires SDDSToolkit installed as SDDS commands are used for accessing the SDDS file used by Elegant as native format. Elegant uses its own style format to store data. The columns we can retrieve from dataset are: x, xp, y, yp, t and P . Please note that xp and yp are not straight momentum data – this is ’projected on Z axis’ momentum. The way to get absolute momentum is to find first pz:
+Elegant to SU5 conversion requires SDDSToolkit installed as SDDS commands are used for accessing the SDDS file used by Elegant as native format. Elegant uses its own style format to store data. The columns we can retrieve from dataset are: $$x, xp, y, yp, t$$ and $$P$$ . Please note that $$xp$$ and $$yp$$ are not straight momentum data – this is ’projected on Z axis’ momentum. The way to get absolute momentum is to find first $$p_z$$:
 
-$${p}_{z}=\frac{P{\cdot}\mathit{ERM}{\cdot}{10}^{6}}{\sqrt{{\mathit{xp}}^{2}+{\mathit{yp}}^{2}+1}}$$
+$${p}_{z}=\frac{P{\cdot}{ERM}{\cdot}{10}^{6}}{\sqrt{{{xp}}^{2}+{{yp}}^{2}+1}}$$
 
-where ERM is Electron Rest Mass and $10^6$ term scales MeV to eV – this is all done to scale momentum units from $$eV/C$$ to SI units. While we calculated $p_z$ we can now find $$p_x$$ and $$p_y$$ as:
+where ERM is Electron Rest Mass and $$10^6$$ term scales MeV to eV – this is all done to scale momentum units from $$eV/C$$ to SI units. While we calculated $$p_z$$ we can now find $$p_x$$ and $$p_y$$ as:
 
 
 $${p}_{x}={p}_{z}{\cdot}\mathit{xp}$$
