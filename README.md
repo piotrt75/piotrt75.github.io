@@ -164,7 +164,7 @@ $$p_{tot}=\sqrt{ {p_x}^2+{p_y}^2+{p_z}^2 }$$
 
 next γ:
 
-$$\gamma =\sqrt{ 1+{(\frac{{p}_{tot}}{m{\cdot}c})}^{2} }$$
+$$\gamma =\sqrt{ 1+{ (\frac{ {p}_{tot}}{m{\cdot}c}) }^{2} }$$
 
 $$\omega_p$$:
 
