@@ -182,7 +182,7 @@ Please note the part responsible for planar type undulator ($$\frac{ {a_u}^{2} }
 
 $${L}_{c}=\frac{ {\lambda }_{r}}{4{\cdot}\pi {\cdot}\rho }$$
 
-$${L}_{g}=\frac{ {\lambda }_{r}}{4{\cdot}\pi {\cdot}\rho }$$
+$${L}_{g}=\frac{ {\lambda }_{u}}{4{\cdot}\pi {\cdot}\rho }$$
 
 
 
@@ -190,14 +190,14 @@ Hence we calculated most necessary variables we can start to rescale the units:
 
 $${z_2}=\frac{ z}{L_c}$$
 
-$$\acute{x}=\frac{x}{\sqrt{{L_g} \cdot {L_c}}}$$
+$$\acute{x}=\frac{ x}{\sqrt{{L_g} \cdot {L_c}}}$$
 
-$$\acute{y}=\frac{y}{\sqrt{{L_g} \cdot {L_c}}}$$
+$$\acute{y}=\frac{ y}{\sqrt{{L_g} \cdot {L_c}}}$$
 
 
-$$\acute{p_x}=\frac{p_x}{\sqrt{m \cdot c \cdot {a_u}}}$$
+$$\acute{p_x}=\frac{ p_x}{\sqrt{m \cdot c \cdot {a_u}}}$$
 
-$$\acute{p_y}={-}\frac{p_y}{\sqrt{m \cdot c \cdot {a _{u}}}}$$
+$$\acute{p_y}={-}\frac{ p_y}{\sqrt{m \cdot c \cdot {a _{u}}}}$$
 
 $${N_e}=\frac{ \mathit{NumberOfParticles}}{{N_p} \cdot {L_g} \cdot {L _ c}^2}$$
 
