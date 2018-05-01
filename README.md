@@ -199,7 +199,7 @@ $$\acute{p_x}=\frac{ p_x}{\sqrt{m \cdot c \cdot {a_u}}}$$
 
 $$\acute{p_y}={-}\frac{ p_y}{\sqrt{m \cdot c \cdot {a _{u}}}}$$
 
-$${N_e}=\frac{ \mathit{NumberOfParticles}}{ {N_p} \cdot {L_g} \cdot {L_c}^2}}}$$
+$${N_e}=\frac{ \mathit{NumberOfParticles}}{ {N_p} \cdot {L_g} \cdot {L_c}^2}$$
 
  
 After all data is processed we need to combine it in Puffin accepted format which is currently HDF table of 7 columns ($$\acute{x}, \acute{y}, {z_2}, \acute{p_x}, \acute{p_y}, \gamma, N_e$$).). The data is saved as HDF5 with VizSchema metadata applied. The HDF file can be loaded into VisIt and user can visualise the input data before launching time consuming calculations in Puffin.
