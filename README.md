@@ -111,7 +111,7 @@ Elegant to SU5 conversion requires SDDSToolkit installed as SDDS commands are us
 
 $${p}_{z}=\frac{P{\cdot}\mathit{ERM}{\cdot}{10}^{6}}{\sqrt{{\mathit{xp}}^{2}+{\mathit{yp}}^{2}+1}}$$
 
-where ERM is Electron Rest Mass and $10^6$ term scales MeV to eV – this is all done to scale momentum units from $eV/C$ to SI units. While we calculated $p_z$ we can now find $p_x$ and $p_y$ as:
+where ERM is Electron Rest Mass and $10^6$ term scales MeV to eV – this is all done to scale momentum units from $$eV/C$$ to SI units. While we calculated $p_z$ we can now find $$p_x$$ and $$p_y$$ as:
 
 
 $${p}_{x}={p}_{z}{\cdot}\mathit{xp}$$
