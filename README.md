@@ -121,7 +121,7 @@ $${p}_{y}={p}_{z}{\cdot}\mathit{yp}$$
 
 The one more lacking data is Z positions of particles. To calculate this we use following equation:
 
-$$z=\frac{t{\cdot}c{\cdot}{p}_{z}}{\sqrt{{p}_{x}^{2}+{p}_{y}^{2}+{p}_{z}^{2}}}$$
+
 
 The only one more thing to do is to calculate proper charge of particles. Elegant doesn’t distinguish particles relating to charge – all particles have same charge and this value is stored in source SDDS file under name ’Charge’. We need to retrieve this value, divide this over number of records (particles) and then divide over charge of single electron to get number of particles in single record. Next the data is stored in SU5 file.
 
@@ -140,7 +140,7 @@ The value of ’n’ is calculated as length of the table (this gives us the tot
 
 # MASP2SU
 
-The conversion is reduced to just rescale the momentum to SU units (p/mc) and reordering columns to SU friendly format x, px, y, py, z, pz, N , adding proper metadata (VizSchema) and saving the data in HDF5 file.
+The conversion is reduced to just rescale the momentum to SU units ($p/mc$) and reordering columns to SU friendly format $x, p_x, y, p_y, z, p_z, N$ adding proper metadata (VizSchema) and saving the data in HDF5 file.
 
 # SU2Astra
 
