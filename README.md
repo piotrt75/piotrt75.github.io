@@ -174,7 +174,7 @@ where $$e_0$$ is vacuum permitivity and $$m$$ is mass of single electron. $$\gam
 
 $$\rho=\frac{1}{{\gamma_0}}{\cdot}{(\frac{ {a_u} \cdot {\omega_p}}{4 \cdot c \cdot {k_u}})}^{\frac{2}{3}}$$
 
-$${\lambda_u}=\frac{ 2{\cdot}\pi }{{k}_{u}}$$
+$${\lambda_u}=\frac{ 2 \cdot \pi }{k_u}$$
 
 $${\lambda_r}=\frac{\lambda_u}{(2 \cdot {\gamma_0}^{2})} \cdot (1+\frac{ {a_u}^{2}}{2})$$
 
