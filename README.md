@@ -180,9 +180,9 @@ $${\lambda_r}=\frac{\lambda_u}{(2 \cdot {\gamma_0}^{2})} \cdot (1+\frac{ {a_u}^{
 
 Please note the part responsible for planar type undulator ($$\frac{ {a_u}^{2} }{2}$$). Next step is to calculate $$L_c$$ and $$L_g$$:
 
-$${L}_{c}=\frac{ {\lambda }_{r}}{4{\cdot}\pi {\cdot}\rho }$$
+$${L_c}=\frac{ {\lambda }_{r}}{4{\cdot}\pi {\cdot}\rho }$$
 
-$${L}_{g}=\frac{ {\lambda }_{u}}{4{\cdot}\pi {\cdot}\rho }$$
+$${L_g}=\frac{ {\lambda }_{u}}{4{\cdot}\pi {\cdot}\rho }$$
 
 
 
@@ -190,9 +190,9 @@ Hence we calculated most necessary variables we can start to rescale the units:
 
 $${z_2}=\frac{ z}{L_c}$$
 
-$$\acute{x}=\frac{ x}{\sqrt{{L_g} \cdot {L_c}}}$$
+$$\acute{x}=\frac{ x}{\sqrt{ {L_g} \cdot {L_c} } } }$$
 
-$$\acute{y}=\frac{ y}{\sqrt{{L_g} \cdot {L_c}}}$$
+$$\acute{y}=\frac{ y}{\sqrt{ {L_g} \cdot {L_c} } } }$$
 
 
 $$\acute{p_x}=\frac{ p_x}{\sqrt{m \cdot c \cdot {a_u}}}$$
