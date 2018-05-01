@@ -160,7 +160,7 @@ The conversion is reduced to just rescale the momentum to SI units and reorderin
 This script converts data from SU5 into Puffin accepted format. The detailed description of Puffin data is published in Puffin papers – this section will focus here only on equations used for direct conversion of data. First of all please note that this is script that is most time consuming of all described here scripts – running time depend on source data size, can run even few minutes and if you suppose that the script is ’frozen’ check your system monitor if CPU is busy (if yes – script is running), the end of the script will also perform some intense hard disk operations. The script calculates number of records by counting the lines and then initiates empty floating point data tables. Script calculates weights (N p ) using 3 dimensional bins command available
 in python – the maximum value is then divided over size of one bin and that gives us value of maximum concentration of electrons. This value might be depending on the number (and of course) size of bins and if the user feels that default value is far from expected it may be easily changed in proper line inside script (see the comments inside the code). The total momentum of particles is calculated as $$p_{tot}$$ :
 
-$$p_{tot}=\sqrt{{p_x}^2+{p_y}^2+{p_z}^2}$$
+$$p_{tot}=\sqrt{p_x}$$
 
 next γ:
 
