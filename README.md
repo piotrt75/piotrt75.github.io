@@ -168,7 +168,7 @@ $$\gamma =\sqrt{ 1+{ (\frac{ {p}_{tot}}{m{\cdot}c}) }^{2} }$$
 
 $$\omega_p$$:
 
-$${\omega }_{p}=\sqrt{ \frac{{e}_{ch}^{2}{\cdot}{N}_{p}}{{e}_{0}{\cdot}m} }$$
+$${\omega }_{p}=\sqrt{ \frac{ {e}_{ch}^{2}{\cdot}{N}_{p}}{{e}_{0}{\cdot}m} }$$
 
 where $$e_0$$ is vacuum permitivity and $$m$$ is mass of single electron. $$\gamma_0$$ is calculated as mean value of $$\gamma$$. The above allows to calculate $$\rho$$, $$\lambda_u$$ and $$\lambda_r$$:
 
