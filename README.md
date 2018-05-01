@@ -110,7 +110,6 @@ Elegant to SU5 conversion requires SDDSToolkit installed as SDDS commands are us
 
 $${p}_{z}=\frac{P \cdot {ERM} \cdot 10^6}{\sqrt{xp^2+yp^2+1}}$$
 
-$$\frac{1}{2}$$
 
 where ERM is Electron Rest Mass and $$10^6$$ term scales MeV to eV – this is all done to scale momentum units from $$eV/C$$ to SI units. While we calculated $$p_z$$ we can now find $$p_x$$ and $$p_y$$ as:
 
@@ -141,29 +140,27 @@ The value of ’n’ is calculated as length of the table (this gives us the tot
 
 # MASP2SU
 
-The conversion is reduced to just rescale the momentum to SU units ($p/mc$) and reordering columns to SU friendly format $x, p_x, y, p_y, z, p_z, N$ adding proper metadata (VizSchema) and saving the data in HDF5 file.
+The conversion is reduced to just rescale the momentum to SU units ($p/mc$) and reordering columns to SU friendly format $$x, p_x, y, p_y, z, p_z, N$$ adding proper metadata (VizSchema) and saving the data in HDF5 file.
 
 # SU2Astra
 
-The script works in a reverse way to Astra2SU script. Data is unscaled to SI units and one more particle (reference particle) is created to fulfill Astra requirements. Reference particle is created as geometrical centre of the beam (not mass centre as the average x/y/z values are not weighted by mass). Finally the ouptut is saved to Astra format and ASCII file.
+The script works in a reverse way to Astra2SU script. Data is unscaled to SI units and one more particle (reference particle) is created to fulfill Astra requirements. Reference particle is created as geometrical centre of the beam (not mass centre as the average $$x/y/z$$ values are not weighted by mass). Finally the ouptut is saved to Astra format and ASCII file.
 
 # SU2Elegant
 
 Again, the script works on reveres principle – in this case reverse to Elegant2SU script. First the data is loaded and some additional variables are calculated to allow creating output array in Elegant format x, xp, y, yp, t and P . Please note that Elegant requires all macroparticles having same charge/weight – if the input data doesn’t fulfill this requirement then the output data will be rather useless for Elegant run. Finally the data is converted and saved into SDDS file to further use with Elegant/SDDS tools.
 
 # SU2Genesis
-The Genesis particle input file in fact is very similar to SU format except it is ASCII file and requires a header describing some beam info: charge of the beam, number of records in the file (macroparticles) and format (in our case X, P X, Y, P Y, Z, P is used). Similarly to Elegant, Genesis requires all macroparticles having same charge/weight – if the input data doesn’t fulfill this requirement then the output data will be rather useless for Genesis run (the data will be wrong).
+The Genesis particle input file in fact is very similar to SU format except it is ASCII file and requires a header describing some beam info: charge of the beam, number of records in the file (macroparticles) and format (in our case $$X, P_x, Y, P_y, Z, P$$ is used). Similarly to Elegant, Genesis requires all macroparticles having same charge/weight – if the input data doesn’t fulfill this requirement then the output data will be rather useless for Genesis run (the data will be wrong).
 
 # SU2MASP
-The conversion is reduced to just rescale the momentum to SI units and reordering columns to MASP friendly format x, px, y, py, z, pz, N and saving the data in ASCII (text) file.
+The conversion is reduced to just rescale the momentum to SI units and reordering columns to MASP friendly format $$x, p_x, y, p_y, z, p_z, N$$ and saving the data in ASCII (text) file.
 
 # SU2Puffin
 This script converts data from SU5 into Puffin accepted format. The detailed description of Puffin data is published in Puffin papers – this section will focus here only on equations used for direct conversion of data. First of all please note that this is script that is most time consuming of all described here scripts – running time depend on source data size, can run even few minutes and if you suppose that the script is ’frozen’ check your system monitor if CPU is busy (if yes – script is running), the end of the script will also perform some intense hard disk operations. The script calculates number of records by counting the lines and then initiates empty floating point data tables. Script calculates weights (N p ) using 3 dimensional bins command available
-in python – the maximum value is then divided over size of one bin and that gives us value of maximum concentration of electrons. This value might be depending on the number (and of course) size of bins and if the user feels that default value is far from expected it may be easily changed in proper line inside script (see the comments inside the code). The total momentum of particles is calculated as p_tot :
+in python – the maximum value is then divided over size of one bin and that gives us value of maximum concentration of electrons. This value might be depending on the number (and of course) size of bins and if the user feels that default value is far from expected it may be easily changed in proper line inside script (see the comments inside the code). The total momentum of particles is calculated as $$p_{tot}$$ :
 
-```python
-p tot = p 2 x + p 2 y + p 2 z
-```
+$${p}_{tot}=\sqrt{{p}_{x}^{2}+{p}_{y}^{2}+{p}_{z}^{2}}$$
 
 next γ:
 
