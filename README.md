@@ -30,7 +30,7 @@ The SU5 file format is HDF5 file which contains particle positions and momentum 
 coordinates are in absolute space. The class of the array is ’table’ and this is due to restrictions from VisIt which is unable to handle properly other classes (fails to open). There is also just one dataset in the file by default. If user wants to pass more datasets then they should have
 different name and the user is also supposed to take extra care about metadata. The below table show how the SU5 file should like when opened in ’hdfview’ or other similar program:
 
-| X | Px | Y | Py | Z | Pz | Ne |
+| $$x$$ | $$p_x$$ | $$y$$ | $$p_y$$ | $$z$$ | $$p_z$$ | $$N_e$$ |
 | -- | -- | -- | -- | -- | -- | -- |
 | 1 | 0.1 | 2 | 0.1 | 1 | 10 | 1 |
 | ... | ... | ... | ... | ... | ... | ... |
@@ -101,7 +101,7 @@ This paragraph will describe in more details how the scripts are converting the 
 
 # Astra2SU
 
-This conversion is relatively straight forward. SU5 needs data in absolute coordinates system while Astra uses first particle in data set as reference particle for Z axis and P z column. First thing done by the script is to convert the space coordinates to absolute ones. First row is the reference particle, therefore we use this row to convert the rest of the particles – note that we only convert the Z axis ($$z$$ and $$p_z$$ , third and sixth column in dataset) ! The same loop in the script is also responsible for converting Astra units to SI units – in case of Astra momentum is $$eV/c$$ and we need to scale it to $$kg \cdot m/s$$ (multiply by $$5.36^{−28}$$ and then divide over $$(m \cdot c)$$. Last operation is to put the number of particles in last column of our output. To do this we scale charge of single record to Coulombs and then divide over single electron charge. Next, the data is saved in SU5 format (ordered as follows: $$x, p_x, y, p_y, z, p_z , Ne$$).
+This conversion is relatively straight forward. SU5 needs data in absolute coordinates system while Astra uses first particle in data set as reference particle for Z axis and P z column. First thing done by the script is to convert the space coordinates to absolute ones. First row is the reference particle, therefore we use this row to convert the rest of the particles – note that we only convert the Z axis ($$z$$ and $$p_z$$ , third and sixth column in dataset) ! The same loop in the script is also responsible for converting Astra units to SI units – in case of Astra momentum is $$eV/c$$ and we need to scale it to $$kg \cdot m/s$$ (multiply by $$5.36^{−28}$$ and then divide over $$(m \cdot c)$$. Last operation is to put the number of particles in last column of our output. To do this we scale charge of single record to Coulombs and then divide over single electron charge. Next, the data is saved in SU5 format (ordered as follows: $$x, p_x, y, p_y, z, p_z , N_e$$).
 
 
 # Elegant2SU
@@ -140,7 +140,7 @@ The value of ’n’ is calculated as length of the table (this gives us the tot
 
 # MASP2SU
 
-The conversion is reduced to just rescale the momentum to SU units ($p/mc$) and reordering columns to SU friendly format $$x, p_x, y, p_y, z, p_z, N$$ adding proper metadata (VizSchema) and saving the data in HDF5 file.
+The conversion is reduced to just rescale the momentum to SU units ($$p/mc$$) and reordering columns to SU friendly format $$x, p_x, y, p_y, z, p_z, N$$ adding proper metadata (VizSchema) and saving the data in HDF5 file.
 
 # SU2Astra
 
